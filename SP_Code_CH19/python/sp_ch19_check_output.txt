@@ -1,0 +1,13 @@
+Ex 19.1 E service level, SD, days ±0.01/±0.005         (np.float64(0.7039), np.float64(0.0111), np.float64(0.0561), 121, 483, np.float64(0.587), np.float64(0.855))
+Ex 19.2 Welch MA at 60/120/180 min                     [np.float64(5.05), np.float64(6.57), np.float64(6.99)]
+Ex 19.3 naive SE, batch SE (b=2000), ESS               (0.394, 7.79, 477)
+Ex 19.4 E − A (Bonferroni)                             (0.3704, 0.0089)
+Ex 19.4 E − B (Bonferroni)                             (0.093, 0.0086)
+Ex 19.4 E − C (Bonferroni)                             (0.0946, 0.0053)
+Ex 19.4 E − D (Bonferroni)                             (0.0095, 0.0091)
+Ex 19.5 exact mean, 95%, mean uptime                   (0.1489, 0.0814, 0.2365, 7.23)
+Ex 19.5 MCMC mean, quantiles, acceptance, ESS          (np.float64(0.1491), [0.0802, 0.2358], 0.698, 2421)
+Ex 19.6 tuning (sd, acc, ESS)                          [(0.005, 0.962, 70), (0.04, 0.695, 2423), (0.4, 0.122, 1315)]
+Ex 19.7 T* mean, 90%, P([4,6]), regret, saving         (np.float64(5.43), [4.5, 6.5], np.float64(0.872), np.float64(0.347), np.float64(30.8))
+Ex 19.8 exact ruin, IS mean ± SE, plain hits           (5.0351687430505836e-05, 5.111336449361464e-05, 4.6022641220674845e-07, 3)
+Exercise 19.11 posteriors                              ((np.float64(0.081), np.float64(0.236)), (np.float64(0.095), np.float64(0.207)))
