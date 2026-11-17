@@ -1,0 +1,19 @@
+Ex 16.1 groups; 1+4Smax; max evals/iteration         ((2, 3, 5), 9, 48)
+Table 16.1 keys decode                               [('J1-J2-J3-J4-J5-J6', np.int64(36)), ('J6-J5-J4-J3-J2-J1', np.int64(33)), ('J2-J1-J4-J5-J3-J6', np.int64(25)), ('J1-J2-J6-J4-J5-J3', np.int64(21)), ('J5-J3-J1-J6-J2-J4', np.int64(56)), ('J4-J1-J2-J3-J6-J5', np.int64(24))]
+Table 16.2 swirl values                              [('diagnostic', 19, True), ('diagnostic', 17, True), ('diagnostic', 28, False), ('round 1', 17, False), ('round 1', 19, False), ('round 2', 17, False), ('round 2', 19, False)]
+Table 16.3 landings                                  [('J4-J2-J5-J6-J1-J3', np.int64(16)), ('J1-J3-J6-J2-J4-J5', np.int64(46))]
+Table 16.3 moves                                     [(np.float64(24.0), np.float64(26.0)), (np.float64(25.0), np.float64(43.0)), (np.float64(33.0), np.float64(27.0))]
+new population mean, best                            (29.17, 16)
+Quest 16.1                                           ('J4-J2-J6-J1-J5-J3', np.int64(11))
+Exercise 16.4 distances from keshtel 4               [0.84, 3.1, 1.46, 2.36, 1.56]
+Exercise 16.3 tie decode                             ('J2-J6-J1-J3-J4-J5', np.int64(28))
+Ex 16.3 / Exercise 16.7 q3, q5, bound                (0.0083, 0.0138, 0.949)
+Ex 16.5 groups                                       ([0.883, 0.038, 0.079], [0.865, 0.026, 0.109])
+Ex 16.6 ablation (success, P by 100, mean)           {'full': (0.873, 0.628, 74.909), 'no lucky (N1=0)': (0.607, 0.347, 90.924), 'no unlucky (N2=0)': (0.727, 0.541, 67.931), 'no remaining (N3=0)': (0.884, 0.658, 70.781), 'unlucky only': (0.424, 0.238, 91.093)}
+Ex 16.7 toy                                          ([0.9985, 22.974461692538807], [0.0, None])
+Ex 16.8 thirty runs                                  (22, 95.0, 83.0)
+Ex 16.11 greedy: all by50/100, distinct by50/100     (0.943, 1.0, 1.0, 1.0)
+Ex 16.11 SA: all by50/100, distinct by50/100         (0.336, 0.925, 0.822, 1.0)
+Ex 16.11 GA: all by50/100, distinct by50/100         (0.318, 0.785, 0.942, 0.978)
+Ex 16.11 KA: all by50/100, distinct by50/100         (0.357, 0.617, 0.611, 0.942)
+Ex 16.11 random: all by50/100, distinct by50/100     (0.131, 0.241, 0.133, 0.258)

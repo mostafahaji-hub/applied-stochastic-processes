@@ -1,0 +1,20 @@
+"""SP_CH17 — number checks for Chapter 17."""
+import sys, numpy as np; sys.path.insert(0,__file__.rsplit('/',1)[0])
+from sp_ch17_mc import *
+from scipy.stats import norm, poisson
+def show(l,v): print(f"{l:<56} {v}")
+show("Ex 17.1 LCG(5,3,16,7), period",(lcg(5,3,16,7,16),period(5,3,16,7)))
+show("Ex 17.2 HD (9,1,16) (7,4,16) (3,1,10)",(hull_dobell(9,1,16),hull_dobell(7,4,16),hull_dobell(3,1,10)))
+show("Quest 17.1 LCG(5,1,8,0)",lcg(5,1,8,0,8))
+show("Ex 17.4 board u=.3,.9; median",(round(exp_inv(0.3,8),2),round(exp_inv(0.9,8),2),round(8*np.log(2),2)))
+show("Ex 17.5 tire u=.3,.5,.9",[round(weib_inv(u,2.5,12),2) for u in (0.3,0.5,0.9)])
+show("Ex 17.6 refund, Poisson, demand",([int(discrete_inv(u,[0,20,50,100],[0.5,0.3,0.15,0.05])) for u in (0.10,0.72,0.97)],int(poisson.ppf(0.55,3)),round(500+80*norm.ppf(0.9),1),round(500+80*norm.ppf(0.025),1)))
+show("Quest 17.2",(round(exp_inv(0.95,8),2),round(weib_inv(0.75,2.5,12),2)))
+show("Ex 17.7 AR decisions",[(a,b,round(4*a*(1-a),2),b<=4*a*(1-a)) for a,b in ((0.3,0.7),(0.1,0.5),(0.55,0.95))])
+show("Ex 17.8 P(late) n=1000 (246 late)",(0.246,round(np.sqrt(0.246*0.754/1000),4),round(0.246-1.96*np.sqrt(0.246*0.754/1000),3),round(0.246+1.96*np.sqrt(0.246*0.754/1000),3)))
+show("Ex 17.9 n for ±0.01, ±0.005, refund ±0.5",(n_needed(np.sqrt(0.23*0.77),0.01),n_needed(np.sqrt(0.23*0.77),0.005),n_needed(25.549,0.5)))
+show("Ex 17.10 e^u",(round(np.mean(np.exp([0.12,0.55,0.80,0.33])),3),round(np.e-1,3)))
+show("Ex 17.11 rare n",(round((1.96/0.1)**2*(1-4.8e-5)/4.8e-5),round((1.96/0.1)**2*0.77/0.23)))
+show("Ex 17.12 tire SD, SE plain n=100",(round(TIRE_SD,3),round(TIRE_SD/10,3)))
+show("Quest 17.3",round(1.96**2*0.25/0.0001))
+show("Ex 17.14 exact rates (Ch 11)",(27.89,28.757,0.867))

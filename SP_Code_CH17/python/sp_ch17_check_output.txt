@@ -1,0 +1,15 @@
+Ex 17.1 LCG(5,3,16,7), period                            ([7, 6, 1, 8, 11, 10, 5, 12, 15, 14, 9, 0, 3, 2, 13, 4, 7], 16)
+Ex 17.2 HD (9,1,16) (7,4,16) (3,1,10)                    (True, False, False)
+Quest 17.1 LCG(5,1,8,0)                                  [0, 1, 6, 7, 4, 5, 2, 3, 0]
+Ex 17.4 board u=.3,.9; median                            (np.float64(2.85), np.float64(18.42), np.float64(5.55))
+Ex 17.5 tire u=.3,.5,.9                                  [np.float64(7.94), np.float64(10.36), np.float64(16.75)]
+Ex 17.6 refund, Poisson, demand                          ([0, 20, 100], 3, np.float64(602.5), np.float64(343.2))
+Quest 17.2                                               (np.float64(23.97), np.float64(13.67))
+Ex 17.7 AR decisions                                     [(0.3, 0.7, 0.84, True), (0.1, 0.5, 0.36, False), (0.55, 0.95, 0.99, True)]
+Ex 17.8 P(late) n=1000 (246 late)                        (0.246, np.float64(0.0136), np.float64(0.219), np.float64(0.273))
+Ex 17.9 n for ±0.01, ±0.005, refund ±0.5                 (6804, 27214, 10031)
+Ex 17.10 e^u                                             (np.float64(1.619), 1.718)
+Ex 17.11 rare n                                          (8002949, 1286)
+Ex 17.12 tire SD, SE plain n=100                         (np.float64(4.556), np.float64(0.456))
+Quest 17.3                                               9604
+Ex 17.14 exact rates (Ch 11)                             (27.89, 28.757, 0.867)
