@@ -1,0 +1,33 @@
+"""SP_CH12 — number checks for every example and exercise of Chapter 12."""
+import sys, numpy as np; sys.path.insert(0,__file__.rsplit('/',1)[0])
+from sp_ch12_reliability import *
+from sp_ch11_ctmc import age_replacement_rate, stationary_Q
+from scipy.stats import weibull_min
+def show(l,v): print(f"{l:<60} {v}")
+Ft=lambda x: weibull_min.cdf(x,2.5,scale=12); Fb=lambda x: weibull_min.cdf(x,3,scale=20)
+show("Ex 12.1 R(12), h",(round(np.exp(-1.5),3),0.125)); show("Ex 12.2 h(3,6,12), R(6)",([round(weibull_hazard(t,2.5,12),3) for t in (3,6,12)],round(1-Ft(6),3)))
+show("Ex 12.3 bearing h",[round(weibull_hazard(t,3,20),3) for t in (5,10,20)])
+show("Ex 12.5 series",(1.75,round(np.exp(-4/7),3),round(np.exp(-8/7),3))); show("Ex 12.6 parallel",(round(10*(1+.5+1/3),1),round(1-(1-np.exp(-1))**3,3)))
+show("Ex 12.7 2of3",(round(R_k_of_n(2,3,.9),3),round(3*np.exp(-1)-2*np.exp(-1.5),3),round(150-200/3,1))); show("Ex 12.8 van R(12)",round(np.exp(-0.5)*(1-(1-np.exp(-1))**2),3))
+show("Ex 12.9 line A r=1,2, bound",(round(line_availability(1)[0],3),round(line_availability(2)[0],3),round((20/21)**3*7/8,3)))
+Q=np.array([[-.3,.3,0,0],[.3,-.5,.2,0],[0,.3,-.4,.1],[0,0,.3,-.3]]); show("Ex 12.10 servers pi, A",(stationary_Q(Q).round(3),round(1-stationary_Q(Q)[3],3)))
+show("Ex 12.11 cost r=1,2",(round(3200*(1-line_availability(1)[0])+300),round(3200*(1-line_availability(2)[0])+600)))
+Ts=np.linspace(2,14,241); a=[age_replacement_rate(T,Ft,80,600) for T in Ts]; show("Ex 12.12 age T*, rate; block(5)",(round(Ts[int(np.argmin(a))],2),round(min(a),2),round(block_replacement_rate(5,2.5,12,80,600),2)))
+show("Ex 12.13 bearing T=10",(round(age_replacement_rate(10,Fb,150,900),2),round(900/weibull_min.mean(3,scale=20),2)))
+show("Ex 12.14 board T=4 vs 75",round(age_replacement_rate(4,lambda x: 1-np.exp(-x/8),80,600),2))
+show("Ex 12.15 inspection",([(T,round(inspection_rate(T,1/50,50,100),1)) for T in (2,5,7,10,20)],round(np.sqrt(2*50/(100/50)),2)))
+show("Ex 12.16 warranty",(round(80*Ft(6),2),round(80*Ft(12),2),round(80*renewal_function(6,2.5,12),2)))
+p=1-np.exp(-0.75); show("Ex 12.17 renewing",round(80*p/(1-p),1)); show("Ex 12.18",(12,16)); show("Ex 12.19 spares 95,99",(spares_needed(18,.95),spares_needed(18,.99)))
+# exercises
+show("Exercise 12.1",([round(weibull_hazard(t,1.5,10),3) for t in (2,5,10)],round(np.exp(-0.5**1.5),3)))
+show("Exercise 12.5 MTTFs",[round(weibull_min.mean(k,scale=e),2) for k,e in ((2.5,12),(3,20),(1.5,10))])
+show("Exercise 12.6",(0.1,10,round(np.exp(-1),3))); show("Exercise 12.7",(18,round(1-(1-np.exp(-1))**2,3),22,round(1-(1-np.exp(-1))**3,3)))
+show("Exercise 12.8",(round(R_k_of_n(3,4,.95),3),round(R_k_of_n(1,4,.95),5)))
+Q2=np.array([[-.1,.1,0],[.5,-.55,.05],[0,.5,-.5]]); show("Exercise 12.10",(stationary_Q(Q2).round(3),round((0.5/0.55)**2,3)))
+show("Exercise 12.11",(round(8000*(1-line_availability(1)[0])+300),round(8000*(1-line_availability(2)[0])+600)))
+Q3=np.array([[-.3,.3,0,0],[.6,-.8,.2,0],[0,.6,-.7,.1],[0,0,.6,-.6]]); show("Exercise 12.12 A",round(1-stationary_Q(Q3)[3],3))
+show("Exercise 12.13",[(T,round(age_replacement_rate(T,Ft,80,300),1)) for T in (4,6,7,8,10,100)])
+show("Exercise 12.14",round((150+900*renewal_function(10,3,20))/10,1))
+show("Exercise 12.16",(round(np.sqrt(2*80/0.5),1),[(T,round(inspection_rate(T,1/100,80,50),2)) for T in (15,18,20,25)]))
+p3=1-np.exp(-3/8); show("Exercise 12.17",(round(150*Fb(12),1),round(80*p3/(1-p3),1)))
+show("Exercise 12.18",(round(8*(1+.5+1/3),1),24,round(8+7.2+6.48,1))); show("Exercise 12.19c",(spares_needed(54.1,.95),spares_needed(54.1,.99)))

@@ -1,0 +1,30 @@
+"""SP_CH11 — number checks for every example and exercise of Chapter 11."""
+import sys, numpy as np; sys.path.insert(0,__file__.rsplit('/',1)[0])
+from sp_ch11_ctmc import *
+from scipy.stats import weibull_min
+def show(l,v): print(f"{l:<60} {v}")
+show("Ex 11.1 holding means, jump chain",((-1/np.diag(Q3)).round(2),jump_chain(Q3).round(3)))
+show("Ex 11.3 P(fail within 2 days)",round(1-np.exp(-0.2),3))
+show("Ex 11.4 pWW(1,3,7)",[round(two_state(1/7,1,t),3) for t in (1,3,7)])
+show("Ex 11.5 P(1), P(5) row W",(transition(Q3,1)[0].round(3),transition(Q3,5)[0].round(3)))
+show("Ex 11.6 Yule 3e^2",round(3*np.exp(2),1)); show("Ex 11.7 10e^-1",round(10*np.exp(-1),2))
+show("Ex 11.9 pi",stationary_Q(Q3).round(3))
+l1,l2,mu=0.1,1/15,0.5; Q=np.zeros((5,5)); Q[0,1]=l1; Q[0,2]=l2; Q[1,0]=mu; Q[1,3]=l2; Q[2,0]=mu; Q[2,4]=l1; Q[3,2]=mu; Q[4,1]=mu
+for i in range(5): Q[i,i]=-Q[i].sum()
+show("Ex 11.11 two servers pi, P(>=1 down)",(stationary_Q(Q).round(3),round(1-stationary_Q(Q)[0],3)))
+show("Ex 11.12 uniformized P",(np.eye(3)+Q3/3.5).round(3))
+show("Ex 11.13 Jackson",(3,6,3))
+mu_t=weibull_min.mean(2.5,scale=12); show("Ex 11.14 tire mean, per year, fleet",(round(mu_t,2),round(12/mu_t,3),round(48*12/mu_t,1)))
+show("Ex 11.16 cost rate failure-only",round(600/mu_t,2))
+F=lambda x: weibull_min.cdf(x,2.5,scale=12); Ts=np.linspace(2,24,221); r=[age_replacement_rate(T,F,80,600) for T in Ts]; show("Ex 11.17 best T, rate",(round(Ts[int(np.argmin(r))],1),round(min(r),2)))
+show("Ex 11.18 inspection: exp 2*20; tire E[L^2]/E[L]",(40,round(weibull_min.moment(2,2.5,scale=12)/mu_t,2)))
+# exercises
+show("Exercise 11.1",(2,0.5,round(1-np.exp(-0.5),3))); show("Exercise 11.4",(0.8,round(0.8+0.2*np.exp(-2.5),3),round(0.8-0.8*np.exp(-2.5),3),round(np.log(100)/2.5,2)))
+show("Exercise 11.5",(round(1/1.2,3),round(1/1.2+0.2/1.2*np.exp(-2.4),3),round(2/2.2,3)))
+show("Exercise 11.6",(2,round(5*np.exp(2),1),2,0.5)); show("Exercise 11.7",(round(2*np.exp(1),2),0.5625))
+show("Exercise 11.8 pi0",round(1/7,4)); show("Exercise 11.10 cost/shift, /year",(round(8*(0.0311*100+0.061*150),1),round(750*8*(0.0311*100+0.061*150))))
+show("Exercise 11.12 L's",(2,4,1,7,3.5))
+mb=weibull_min.mean(3,scale=20); show("Exercise 11.13",(round(mb,1),round(60/mb,2),round(150/mb,2)))
+show("Exercise 11.14",(round(400/408,3),round(8000/408,1))); show("Exercise 11.15",(round(600/mu_t,1),round(1000/mu_t,1)))
+Fb=lambda x: weibull_min.cdf(x,3,scale=20); show("Exercise 11.16",[(T,round(age_replacement_rate(T,Fb,150,900),1)) for T in (6,8,10,12,15,20,1000)])
+show("Exercise 11.17 gamma k=2 mean 20",30); show("Exercise 11.20 pWW(2)",round(two_state(1/7,1,2),3))
